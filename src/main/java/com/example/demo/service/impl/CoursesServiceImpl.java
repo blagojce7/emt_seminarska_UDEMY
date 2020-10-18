@@ -7,12 +7,13 @@ import com.example.demo.repository.CoursesRepository;
 import com.example.demo.repository.InstructorRepository;
 import com.example.demo.service.CoursesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+@Service
 public class CoursesServiceImpl implements CoursesService {
     @Autowired
     CoursesRepository coursesRepository;
