@@ -11,7 +11,7 @@ public interface CoursesService {
     Courses findCourseByID(Long id);
     List<Courses> findAllByInstructor(Long instructorId);
     List<Courses> findAllByCategory(Long categoryId);
-    Courses saveCourse(Courses course) throws IOException;
+    Courses saveCourse(Courses course,Long instructorId,Long categoryId) throws IOException;
     Courses updateCourse(Long id,Courses courses) throws IOException;
     void deleteCourse(Long id);
 }
