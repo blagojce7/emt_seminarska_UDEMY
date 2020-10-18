@@ -66,7 +66,7 @@ public class Person {
 
 
 
-    public Person(Long id, String name, String surname, String address, List<Courses> myCourses) {
+    public Person(Long id, String name, String surname, String address) {
         this.id = id;
         this.name = name;
         this.surname = surname;
