@@ -5,7 +5,7 @@ import com.example.demo.model.ShoppingCart;
 import java.util.List;
 
 public interface ShoppingCartService {
-    ShoppingCart addProductToShoppingCart(Long userId, Long productId);
-    ShoppingCart removeProductFromShoppingCart(Long userId, Long productId);
+    ShoppingCart addCourseToShoppingCart(Long userId, Long productId);
+    ShoppingCart removeCourseFromShoppingCart(Long userId, Long CourseId);
     List<ShoppingCart> findAllShoppingCarts();
 }

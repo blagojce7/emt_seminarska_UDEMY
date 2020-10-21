@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class Courses {
@@ -72,5 +73,29 @@ public class Courses {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Optional<Category> category) {
+        this.category = category;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Optional<Instructor> instructor) {
+        this.instructor = instructor;
+    }
+
+    public List<ShoppingCart> getShoppingCarts() {
+        return shoppingCarts;
+    }
+
+    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
+        this.shoppingCarts = shoppingCarts;
     }
 }

@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.model.Courses;
 import com.example.demo.model.Instructor;
 import com.example.demo.model.exceptions.CourseNotFound;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.CoursesRepository;
 import com.example.demo.repository.InstructorRepository;
 import com.example.demo.service.CoursesService;
@@ -13,6 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CoursesServiceImpl implements CoursesService {
     @Autowired
@@ -20,6 +23,9 @@ public class CoursesServiceImpl implements CoursesService {
 
     @Autowired
     InstructorRepository instructorRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @Override
     public List<Courses> findAllCourses() {
@@ -56,9 +62,17 @@ public class CoursesServiceImpl implements CoursesService {
 
     @Override
     public Courses saveCourse(Courses course, Long instructorId, Long categoryId) throws IOException {
+        Courses newCourse =  new Courses();
+        newCourse.setId(course.getId());
+        newCourse.setDescription(course.getDescription());
+        newCourse.setImage(course.getImage());
+        newCourse.setName(course.getName());
+        newCourse.setPrice(course.getPrice());
+        newCourse.setInstructor(instructorRepository.findById(instructorId));
+        newCourse.setCategory(categoryRepository.findById(categoryId));
 
 
-        return null;
+        return this.coursesRepository.save(newCourse);
     }
 
 
