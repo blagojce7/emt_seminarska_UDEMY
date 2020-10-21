@@ -4,6 +4,7 @@ import com.example.demo.model.Courses;
 import com.example.demo.service.CoursesService;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -25,5 +26,20 @@ public class CoursesController {
     public Courses findCourseById(@PathVariable Long id){
         return this.coursesService.findCourseByID(id);
     }
+
+    @PostMapping
+    public Courses save(Courses course) {
+        return this.coursesService.save(course);
+    }
+    @PutMapping("/{id}")
+    public Courses update(@PathVariable Long id, Courses courses) throws IOException {
+        return this.coursesService.updateCourse(id, courses);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        this.coursesService.deleteCourse(id);
+    }
+
 
 }

@@ -79,11 +79,22 @@ public class CoursesServiceImpl implements CoursesService {
 
     @Override
     public Courses updateCourse(Long id, Courses courses) throws IOException {
-        return null;
+        Courses newCourse = this.coursesRepository.findById(id).orElseThrow();
+        newCourse.setId(courses.getId());
+        newCourse.setDescription(courses.getDescription());
+        newCourse.setImage(courses.getImage());
+        newCourse.setName(courses.getName());
+        newCourse.setPrice(courses.getPrice());
+        return this.coursesRepository.save(newCourse);
     }
 
     @Override
     public void deleteCourse(Long id) {
+        this.coursesRepository.deleteById(id);
+    }
 
+    @Override
+    public Courses save(Courses course) {
+        return this.coursesRepository.save(course);
     }
 }

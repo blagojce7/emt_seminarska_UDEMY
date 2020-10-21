@@ -14,4 +14,5 @@ public interface CoursesService {
     Courses saveCourse(Courses course,Long instructorId,Long categoryId) throws IOException;
     Courses updateCourse(Long id,Courses courses) throws IOException;
     void deleteCourse(Long id);
+    public Courses save(Courses course);
 }
