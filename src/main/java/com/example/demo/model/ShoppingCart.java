@@ -1,16 +1,27 @@
 package com.example.demo.model;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 public class ShoppingCart {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
+    @JsonIgnore
     @ManyToMany
-    private List<Courses> courses;
+    @JoinTable(name = "shopping_cart_courses",
+        joinColumns = @JoinColumn(columnDefinition = "shopping_carts_id"),
+            inverseJoinColumns = @JoinColumn(name = "courses_id")
+    )
+    private List<Courses> courses = new ArrayList<>();
 
     @OneToOne
     private Person person;

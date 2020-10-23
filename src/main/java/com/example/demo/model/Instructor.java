@@ -1,13 +1,14 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Instructor {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String surname;
@@ -15,6 +16,7 @@ public class Instructor {
     private String password;
     private String address;
     private String description;
+    @JsonIgnore
     @OneToMany(mappedBy = "instructor")
     List<Courses> courses;
 

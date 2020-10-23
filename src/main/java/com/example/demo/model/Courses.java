@@ -1,28 +1,56 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
 @Entity
+@Table(name = "courses")
 public class Courses {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
     private String image;
     private Long price;
 
+    //@JsonIgnore
     @ManyToOne
     private Category category;
+    //@JsonIgnore
     @ManyToOne
     private Instructor instructor;
+    @JsonIgnore
     @ManyToMany(mappedBy = "courses")
     private List<ShoppingCart> shoppingCarts;
 
+
+
+
+
+
+    public Courses(String name, String description, String image, Long price) {
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+    }
+
+    public Courses(Long id, String name, String description, String image, Long price, Category category, Instructor instructor ) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+        this.category = category;
+        this.instructor = instructor;
+        //this.shoppingCarts = shoppingCarts;
+    }
     public Courses(Long id, String name, String description, String image, Long price) {
         this.id = id;
         this.name = name;
@@ -79,7 +107,7 @@ public class Courses {
         return category;
     }
 
-    public void setCategory(Optional<Category> category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -87,7 +115,7 @@ public class Courses {
         return instructor;
     }
 
-    public void setInstructor(Optional<Instructor> instructor) {
+    public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
     }
 

@@ -28,8 +28,10 @@ public class CoursesController {
     }
 
     @PostMapping
-    public Courses save(Courses course) {
+    public Courses save(@RequestBody Courses course){//Long id,String name, String description, String image, Long price, Long category, Long instructor) {
+
         return this.coursesService.save(course);
+//        return this.coursesService.saveNaBaceNachin(id,name, description, image, price, category, instructor);
     }
     @PutMapping("/{id}")
     public Courses update(@PathVariable Long id, Courses courses) throws IOException {

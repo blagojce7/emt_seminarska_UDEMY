@@ -1,12 +1,15 @@
 package com.example.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Person {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String surname;
@@ -14,7 +17,7 @@ public class Person {
     private String email;
     private String password;
 
-
+    //@JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Roles> roles;
     @OneToOne

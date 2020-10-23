@@ -1,15 +1,19 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.Category;
 import com.example.demo.model.Courses;
 import com.example.demo.model.Instructor;
+import com.example.demo.model.ShoppingCart;
 import com.example.demo.model.exceptions.CourseNotFound;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.CoursesRepository;
 import com.example.demo.repository.InstructorRepository;
+import com.example.demo.repository.ShoppingCartRepository;
 import com.example.demo.service.CoursesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +30,8 @@ public class CoursesServiceImpl implements CoursesService {
 
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    ShoppingCartRepository shoppingCartRepository;
 
     @Override
     public List<Courses> findAllCourses() {
@@ -60,16 +66,30 @@ public class CoursesServiceImpl implements CoursesService {
         return null;
     }
 
+//    @Override
+//    public Courses saveCourse(Courses course, Long instructorId, Long categoryId) throws IOException {
+//        Courses newCourse =  new Courses();
+//        newCourse.setId(course.getId());
+//        newCourse.setDescription(course.getDescription());
+//        newCourse.setImage(course.getImage());
+//        newCourse.setName(course.getName());
+//        newCourse.setPrice(course.getPrice());
+//        newCourse.setInstructor(instructorRepository.findById(instructorId).orElseThrow());
+//        newCourse.setCategory(categoryRepository.findById(categoryId).orElseThrow());
+//
+//
+//        return this.coursesRepository.save(newCourse);
+//    }
     @Override
-    public Courses saveCourse(Courses course, Long instructorId, Long categoryId) throws IOException {
+    public Courses saveCourse(Courses course){//, Long instructorId, Long categoryId) throws IOException {
         Courses newCourse =  new Courses();
         newCourse.setId(course.getId());
         newCourse.setDescription(course.getDescription());
         newCourse.setImage(course.getImage());
         newCourse.setName(course.getName());
         newCourse.setPrice(course.getPrice());
-        newCourse.setInstructor(instructorRepository.findById(instructorId));
-        newCourse.setCategory(categoryRepository.findById(categoryId));
+       // newCourse.setInstructor(instructorRepository.findById(instructorId).orElseThrow());
+      //  newCourse.setCategory(categoryRepository.findById(categoryId).orElseThrow());
 
 
         return this.coursesRepository.save(newCourse);
@@ -94,7 +114,17 @@ public class CoursesServiceImpl implements CoursesService {
     }
 
     @Override
+    @Transactional
     public Courses save(Courses course) {
         return this.coursesRepository.save(course);
+    }
+
+    @Override
+    public Courses saveNaBaceNachin(Long id,String name, String description, String image, Long price, Long category, Long instructor) {
+        Category category1 = this.categoryRepository.findById(category).orElseThrow();
+        Instructor instructor1 = this.instructorRepository.findById(instructor).orElseThrow();
+       // ShoppingCart shoppingCart1 = this.shoppingCartRepository.findAllById(shoppingCart).orElseThrow();
+        Courses newCourse = new Courses(id,name,description,image,price,category1,instructor1);
+        return null;
     }
 }
