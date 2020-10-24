@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +24,8 @@ public class Person {
     @OneToOne
     private ShoppingCart shoppingCart;
 
-    public Person(Long id, String name, String surname, String address, String email, String password, List<Roles> roles, ShoppingCart shoppingCart) {
-        this.id = id;
+    public Person(String name, String surname, String address, String email, String password, List<Roles> roles, ShoppingCart shoppingCart) {
+
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -69,13 +70,7 @@ public class Person {
 
 
 
-    public Person(Long id, String name, String surname, String address) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.address = address;
 
-    }
 
     public Person() {
 

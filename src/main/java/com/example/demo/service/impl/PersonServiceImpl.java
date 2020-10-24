@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.Courses;
 import com.example.demo.model.Person;
 import com.example.demo.model.exceptions.UserAlreadyExistsException;
 import com.example.demo.model.exceptions.UserNotFoundException;
@@ -20,11 +21,9 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person registerPerson(Person person) {
-        if (this.personRepository.existsById(person.getId())) {
-            throw new UserAlreadyExistsException(person.getEmail());
 
-        }
         return this.personRepository.save(person);
 
     }
+
 }

@@ -10,9 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "shopping_cart")
 public class ShoppingCart {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date date;
     @JsonIgnore

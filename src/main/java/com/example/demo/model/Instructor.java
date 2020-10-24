@@ -6,9 +6,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "instructor")
 public class Instructor {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String surname;
@@ -20,8 +21,8 @@ public class Instructor {
     @OneToMany(mappedBy = "instructor")
     List<Courses> courses;
 
-    public Instructor(Long id, String name, String surname, String email, String password, String address, String description, List<Courses> courses) {
-        this.id = id;
+    public Instructor( String name, String surname, String email, String password, String address, String description, List<Courses> courses) {
+
         this.name = name;
         this.surname = surname;
         this.email = email;

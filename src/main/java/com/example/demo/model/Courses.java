@@ -12,7 +12,7 @@ import java.util.Optional;
 @Table(name = "courses")
 public class Courses {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String description;
@@ -41,8 +41,8 @@ public class Courses {
         this.price = price;
     }
 
-    public Courses(Long id, String name, String description, String image, Long price, Category category, Instructor instructor ) {
-        this.id = id;
+    public Courses( String name, String description, String image, Long price, Category category, Instructor instructor ) {
+
         this.name = name;
         this.description = description;
         this.image = image;

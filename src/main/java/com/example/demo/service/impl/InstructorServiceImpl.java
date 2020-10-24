@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class InstructorServiceImpl implements InstructorService {
@@ -26,8 +25,8 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
-    public Optional<Instructor> findInstructorById(Long id) {
-        return this.instructorRepository.findById(id);
+    public Instructor findInstructorById(Long id) {
+        return this.instructorRepository.findById(id).orElseThrow();
     }
 
     @Override

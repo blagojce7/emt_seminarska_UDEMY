@@ -106,6 +106,7 @@ public class CoursesServiceImpl implements CoursesService {
         newCourse.setName(courses.getName());
         newCourse.setPrice(courses.getPrice());
         return this.coursesRepository.save(newCourse);
+
     }
 
     @Override
@@ -114,7 +115,6 @@ public class CoursesServiceImpl implements CoursesService {
     }
 
     @Override
-    @Transactional
     public Courses save(Courses course) {
         return this.coursesRepository.save(course);
     }
@@ -124,7 +124,7 @@ public class CoursesServiceImpl implements CoursesService {
         Category category1 = this.categoryRepository.findById(category).orElseThrow();
         Instructor instructor1 = this.instructorRepository.findById(instructor).orElseThrow();
        // ShoppingCart shoppingCart1 = this.shoppingCartRepository.findAllById(shoppingCart).orElseThrow();
-        Courses newCourse = new Courses(id,name,description,image,price,category1,instructor1);
+        Courses newCourse = new Courses(name,description,image,price,category1,instructor1);
         return null;
     }
 }
