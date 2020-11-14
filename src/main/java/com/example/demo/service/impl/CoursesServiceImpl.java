@@ -100,7 +100,7 @@ public class CoursesServiceImpl implements CoursesService {
     @Override
     public Courses updateCourse(Long id, Courses courses) throws IOException {
         Courses newCourse = this.coursesRepository.findById(id).orElseThrow();
-        newCourse.setId(courses.getId());
+        newCourse.setId(id);
         newCourse.setDescription(courses.getDescription());
         newCourse.setImage(courses.getImage());
         newCourse.setName(courses.getName());
