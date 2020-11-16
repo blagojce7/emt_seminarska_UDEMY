@@ -17,7 +17,7 @@ public interface CoursesService {
     Courses saveCourse(Courses course) throws IOException;
     Courses updateCourse(Long id,Courses courses) throws IOException;
     void deleteCourse(Long id);
-    public Courses save(Courses course);
+    public Courses save(Courses course,Long kategorijata,Long instruktorot);
     Courses saveNaBaceNachin(Long id,String name, String description, String image, Long price, Long category, Long instructor);
 
    // Courses saveNaBaceNachin(String name, String description, String image, Long price, Category category, Instructor instructor, ShoppingCart shoppingCart);

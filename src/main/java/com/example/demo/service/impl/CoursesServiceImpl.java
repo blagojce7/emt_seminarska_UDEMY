@@ -115,9 +115,18 @@ public class CoursesServiceImpl implements CoursesService {
     }
 
     @Override
-    public Courses save(Courses course) {
-        return this.coursesRepository.save(course);
-    }
+    public Courses save(Courses course,Long kategorijata,Long instruktorot) {
+
+        Instructor instructor = this.instructorRepository.findById(instruktorot).orElseThrow();
+        Category category = this.categoryRepository.findById(kategorijata).orElseThrow();
+        String name = course.getName();
+        String description = course.getDescription();
+        Long price = course.getPrice();
+        String image = course.getImage();
+        Courses newCourse = new Courses(name,description,image,price,category,instructor);
+
+        return this.coursesRepository.save(newCourse);
+    }   
 
     @Override
     public Courses saveNaBaceNachin(Long id,String name, String description, String image, Long price, Long category, Long instructor) {

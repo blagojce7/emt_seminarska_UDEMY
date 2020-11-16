@@ -27,10 +27,21 @@ public class CoursesController {
         return this.coursesService.findCourseByID(id);
     }
 
-    @PostMapping
-    public Courses save(@RequestBody Courses course){
-        return this.coursesService.save(course);
+    @PostMapping("/{kategoriii}/{instruktoriii}")
+    public Courses save(@RequestBody Courses course
+                        ,@PathVariable(value = "kategoriii") Long kategoriii
+                        ,@PathVariable(value = "instruktoriii") Long instruktoriii
+                        ){
+
+
+        return this.coursesService.save(course,kategoriii,instruktoriii);
     }
+
+//
+//    @PostMapping
+//    public Courses save(@RequestBody Courses course){ return this.coursesService.save(course);
+//    }
+
     @PutMapping("/{id}")
     public Courses update(@PathVariable Long id,@RequestBody Courses courses) throws IOException {
         return this.coursesService.updateCourse(id, courses);
